@@ -1,2 +1,2 @@
 export * from './general/general.component';
-export * from './general/create/create.component';
+export * from './general/general/create/create.component';
