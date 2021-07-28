@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from "./app-routing.modules";
 import {LoginComponent} from './modules/login/pages/auth/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
+// import { HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
+    // HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],

@@ -1,1 +1,12 @@
-<p>general works!</p>
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <ul *ngIf="data" class="list-group">
+<!--      <li class="list-group-item"-->
+<!--          *ngFor="let item of data1">{{item.title}}</li>-->
+      <li class="list-group-item"
+          *ngFor="let item of data">{{item.title}}</li>
+    </ul>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

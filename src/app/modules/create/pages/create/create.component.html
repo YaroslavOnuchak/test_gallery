@@ -1,0 +1,126 @@
+<div class="container pb-2">
+  <form [formGroup]="newForm" class="col-10">
+    <div class="user">
+      <div class="mb-3 col-6">
+        <label for="createFirstName" class="form-label _req">Enter First name</label>
+        <input type="text"
+               formControlName="title"
+               class="form-control"
+               placeholder="first name"
+               id="createFirstName">
+        <div>
+          <div class="small text-danger">
+            firstName is mandatory.
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 col-6">
+        <label for="createLastName" class="form-label _req">Enter Last name</label>
+        <input type="text"
+               placeholder="last name"
+               formControlName="lastName"
+               class="form-control"
+               id="createLastName">
+        <div>
+        </div>
+      </div>
+      <div class="mb-3 col-6">
+        <label for="createUserName"
+               class="form-label _req">Enter Username</label>
+        <input type="text"
+               placeholder="username"
+               class="form-control"
+               formControlName="username"
+               id="createUserName">
+
+      </div>
+      <div class="mb-3 col-6">
+        <label for="createEmail"
+               class="form-label _req">Email address</label>
+        <input type="email" class="form-control"
+               formControlName="email"
+               placeholder="email"
+               id="createEmail"
+               aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3 col-6">
+        <label for="createPhone"
+               class="form-label _req">Enter Phone</label>
+        <input type="text"
+               placeholder="phone 0.. "
+               formControlName="phone"
+               class="form-control"
+               id="createPhone">
+
+      </div>
+    </div>
+    <!--    <div formArrayName="addressList" >-->
+    <h4>Address Information</h4>
+    <!--      <div *ngFor="let newAddress of addressListArray.controls, let idx = index">-->
+    <!--        <div [formGroupName]=idx>-->
+    <!--          <h5> address # : {{ idx + 1}}</h5>-->
+    <!--          <div class="mb-3 col-6 form-group firstControlElem">-->
+    <!--            <label>AddressType:-->
+    <!--              <select class="form-select"-->
+    <!--                      formControlName="addressType"-->
+    <!--                      aria-label="Default select example">-->
+    <!--                <option [selected] disabled>You have to choose</option>-->
+    <!--                <option *ngFor="let el of addressType, let idx = index"-->
+    <!--                        [value]=el.value> {{el.text}}</option>-->
+    <!--              </select>-->
+    <!--            </label>-->
+    <!--            <button type="button"-->
+    <!--                    class="btn btn-close"-->
+    <!--                    (click)="delAddresField(idx)"></button>-->
+    <!--          </div>-->
+    <!--          <div class="mb-3 col-6">-->
+    <!--            <label>Enter address:-->
+    <!--              <input type="text"-->
+    <!--                     placeholder="address"-->
+    <!--                     formControlName="address"-->
+    <!--                     class="form-control"></label>-->
+    <!--          </div>-->
+    <!--          <div class="mb-3 col-6">-->
+    <!--            <label>Enter city:-->
+    <!--              <input type="text"-->
+    <!--                     placeholder="city"-->
+    <!--                     formControlName="city"-->
+    <!--                     class="form-control"></label>-->
+    <!--          </div>-->
+    <!--          <div class="mb-3 col-6 box&#45;&#45;helpList">-->
+    <!--            <label>Enter country:-->
+    <!--              <ng-select-->
+    <!--                formControlName="country"-->
+    <!--                class="form-control"-->
+    <!--                [items]="countries"-->
+    <!--                bindLabel="name"-->
+    <!--                placeholder="Select country">-->
+    <!--              </ng-select>-->
+    <!--            </label>-->
+    <!--          </div>-->
+    <!--          <div class="mb-3 col-6">-->
+    <!--            <label>Enter postal Code:-->
+    <!--              <input type="text"-->
+    <!--                     placeholder="postal Code"-->
+    <!--                     formControlName="postalCode"-->
+    <!--                     class="form-control"></label>-->
+    <!--          </div>-->
+    <!--          <hr />-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <button
+      type="button"
+      class="btn btn-secondary m-2"
+    (click)="sendData()">add another address
+    </button>
+  </form>
+
+  <div class="'showForm">
+
+    <br/>
+    <button type="button"
+            class="btn btn-secondary">Next
+    </button>
+  </div>
+</div>

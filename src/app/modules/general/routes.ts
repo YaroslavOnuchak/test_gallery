@@ -1,27 +1,36 @@
 import {Routes} from '@angular/router';
 
-import {CreateComponent, GeneralComponent} from './pages';
+import {
+  GeneralComponent
+} from './pages';
 
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main_page',
+    redirectTo: 'dashboard',
     // pathMatch: 'full',
   },
-  {
-    path: 'main_page',
-    component: GeneralComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'main_page',
-        // pathMatch: 'full',
-      }, {
-        path: 'create',
-        component: CreateComponent,
-      }
 
-    ]
+  {
+    path: 'dashboard',
+    component: GeneralComponent,
+    // children: [
+    //   {
+    //     path: '',
+    //     redirectTo: 'main_page',
+    //     // pathMatch: 'full',
+    //   }, {
+    //     path: 'create',
+    //     component: CreateComponent,
+    //   }
+    //
+    // ]
+  },
+  {
+    path: 'create',
+    loadChildren: () =>
+      import('../create/create.module')
+        .then(m => m.CreateModule),
   },
 ];
