@@ -10,7 +10,8 @@ import {HttpClient} from "@angular/common/http";
   , changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GeneralComponent implements OnInit {
-  data: PostModel[]=[]
+  data: PostModel[] = []
+  isFeching: boolean = false
 
   constructor(private http: HttpClient,
               private cdr: ChangeDetectorRef) {
@@ -21,7 +22,8 @@ export class GeneralComponent implements OnInit {
     this.fetchData()
   }
 
-  fetchData() {
+  private fetchData() {
+    this.isFeching = true
     this.http.get<{ [key: string]: PostModel }>(
       'https://gallery-img-default-rtdb.europe-west1.firebasedatabase.app/album.json')
       .pipe(
@@ -38,7 +40,8 @@ export class GeneralComponent implements OnInit {
       )
       .subscribe(responseData => {
           this.data = responseData;
-        this.cdr.detectChanges();
+          this.isFeching = false
+          this.cdr.detectChanges();
           // console.log(' this.data ==> ', this.data)
         }
       )
