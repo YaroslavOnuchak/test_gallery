@@ -23,7 +23,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
            aria-current="page"
            routerLink="view/create">create</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item>
         <a class="nav-link"
            routerLinkActive="active"
            routerLink="view/dashboard">dashboard</a>
