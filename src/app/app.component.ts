@@ -14,6 +14,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
     <!--        <a class="nav-link"-->
     <!--           routerLink="view/dashboard">app dashboard</a></li>-->
     <!--    </ul>-->
+<h3>server02</h3>
     <h3>main</h3>
 <h3>server 1</h3>
     <ul class="nav nav-tabs " id="myTab" role="tablist">
