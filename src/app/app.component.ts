@@ -4,7 +4,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   selector: 'app-root',
   template: `
 <h3>server 01-00</h3>
-    <h3>main!!!</h3>
+    <h3>main! !</h3>
     <ul class="nav nav-tabs " id="myTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link "
