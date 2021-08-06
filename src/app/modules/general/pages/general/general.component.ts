@@ -10,7 +10,7 @@ import {HttpClient} from "@angular/common/http";
   , changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GeneralComponent implements OnInit {
-  data: PostModel[] = []
+  data: any = []
   isFeching: boolean = false
 
   constructor(private http: HttpClient,
@@ -24,14 +24,14 @@ export class GeneralComponent implements OnInit {
 
   private fetchData() {
     this.isFeching = true
-    this.http.get<{ [key: string]: PostModel }>(
+    this.http.get<{ [key: string]: any }>(
       'https://gallery-img-default-rtdb.europe-west1.firebasedatabase.app/album.json')
       .pipe(
         map(responseData => {
             const postArray = [];
             for (let key in responseData) {
               if (responseData.hasOwnProperty(key)) {
-                postArray.push({...responseData[key], id: key})
+                postArray.push({...responseData[key]})
               }
             }
             return postArray;
@@ -42,7 +42,7 @@ export class GeneralComponent implements OnInit {
           this.data = responseData;
           this.isFeching = false
           this.cdr.detectChanges();
-          // console.log(' this.data ==> ', this.data)
+          console.log(' this.data ==> ', this.data)
         }
       )
   }

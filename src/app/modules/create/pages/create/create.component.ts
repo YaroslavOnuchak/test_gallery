@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {map} from 'rxjs/operators'
 import {PostModel} from "../../../../shared/models";
+// import {PostModel} from "@b2b/shared/";
+import {PostService} from "@shared/services";
 
 @Component({
   selector: 'app-create',
@@ -14,7 +16,8 @@ export class CreateComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private postService: PostService) {
   }
 
   ngOnInit(): void {
@@ -22,16 +25,13 @@ export class CreateComponent implements OnInit {
   }
 
   sendData() {
-    this.http.post<{ key: string }>(
-      'https://gallery-img-default-rtdb.europe-west1.firebasedatabase.app/album.json',
-      this.newForm.value).subscribe(responseData => console.log(responseData))
-    // https://gallery-img-default-rtdb.europe-west1.firebasedatabase.app/
+    this.postService.createPost(this.newForm.value)
   }
 
 
   buildUserForm(): FormGroup {
     return this.newForm = this.fb.group({
-        id: 0,
+        id: ``,
         title: ['', Validators.required],
         lastName: ['', Validators.required],
         username: ['', Validators.required],

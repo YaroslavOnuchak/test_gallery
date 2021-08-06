@@ -16,7 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
     // CommonModule,
     GeneralRoutingModule,
     CommonModule,
-    HttpClientModule,
+    // HttpClientModule,
     // ReactiveFormsModule,
     // FormsModule,
 
