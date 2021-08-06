@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {map} from 'rxjs/operators'
 import {PostModel} from "../../../../shared/models";
-// import {PostModel} from "@b2b/shared/";
 import {PostService} from "@shared/services";
 
 @Component({
