@@ -1,18 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
-import {map} from 'rxjs/operators'
-import {PostModel} from "../../../../shared/models";
 import {PostService} from "@shared/services";
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  styleUrls: ['./create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateComponent implements OnInit {
   newForm!: FormGroup;
-
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
