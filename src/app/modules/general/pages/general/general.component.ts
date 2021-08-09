@@ -31,14 +31,14 @@ export class GeneralComponent implements OnInit {
   private fetchData() {
     this.isFeching = true
     this.postServise.fetchPost()
-      .subscribe(responseData => {
+      .subscribe((responseData:any) => {
           this.data = responseData;
           this.isFeching = false
           console.log(responseData)
           this.cdr.detectChanges();
 
         },
-        error => {
+        (error: any) => {
           this.error = error.message;
           this.isFeching = false
           this.cdr.detectChanges();
