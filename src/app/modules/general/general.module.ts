@@ -11,6 +11,8 @@ import {HttpClientModule} from "@angular/common/http";
 // import { AccessManagementRoutingModule } from './access-management.routing.module';
 // import { CoreModule } from '@ngxceed/core';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   imports: [
     // CommonModule,
@@ -19,6 +21,7 @@ import {HttpClientModule} from "@angular/common/http";
     // HttpClientModule,
     // ReactiveFormsModule,
     // FormsModule,
+    FontAwesomeModule
 
   ],
   declarations: [

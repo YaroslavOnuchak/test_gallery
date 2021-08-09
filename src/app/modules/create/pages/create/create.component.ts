@@ -1,7 +1,8 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {PostService} from "@shared/services";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-create',
@@ -9,16 +10,26 @@ import {PostService} from "@shared/services";
   styleUrls: ['./create.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent implements OnInit, OnDestroy {
+  errorSub: Subscription ;
   newForm!: FormGroup;
+  error: any = null;
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
               private postService: PostService) {
+    this.errorSub = this.postService.error.subscribe(er => {
+      this.error = er
+    })
   }
 
   ngOnInit(): void {
+
     this.buildUserForm()
+  }
+
+  ngOnDestroy() {
+    this.errorSub.unsubscribe()
   }
 
   sendData() {

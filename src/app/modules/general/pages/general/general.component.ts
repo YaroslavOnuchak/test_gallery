@@ -2,48 +2,60 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@an
 import {PostModel} from "../../../../shared/models";
 import {map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
+import {PostService} from "@shared/services";
+import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-general',
   templateUrl: './general.component.html',
   styleUrls: ['./general.component.scss']
-  , changeDetection: ChangeDetectionStrategy.OnPush
+  ,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GeneralComponent implements OnInit {
-  data: any = []
-  isFeching: boolean = false
+  data: any = [];
+  isFeching: boolean = false;
+  error = null;
+  icon = faTrashAlt;
 
   constructor(private http: HttpClient,
-              private cdr: ChangeDetectorRef) {
-
+              private cdr: ChangeDetectorRef,
+              private postServise: PostService) {
   }
 
   ngOnInit(): void {
     this.fetchData()
+    console.log(Date.now())
   }
 
   private fetchData() {
     this.isFeching = true
-    this.http.get<{ [key: string]: any }>(
-      'https://gallery-img-default-rtdb.europe-west1.firebasedatabase.app/album.json')
-      .pipe(
-        map(responseData => {
-            const postArray = [];
-            for (let key in responseData) {
-              if (responseData.hasOwnProperty(key)) {
-                postArray.push({...responseData[key]})
-              }
-            }
-            return postArray;
-          }
-        )
-      )
+    this.postServise.fetchPost()
       .subscribe(responseData => {
           this.data = responseData;
           this.isFeching = false
+          console.log(responseData)
           this.cdr.detectChanges();
-          console.log(' this.data ==> ', this.data)
+
+        },
+        error => {
+          this.error = error.message;
+          this.isFeching = false
+          this.cdr.detectChanges();
         }
       )
+  }
+
+  delete() {
+    this.postServise.delPost('5')
+      .subscribe((responseData) => {
+          this.data = responseData;
+        this.fetchData()
+        }, error => {
+          this.error = error.message
+
+        }
+      )
+
   }
 }

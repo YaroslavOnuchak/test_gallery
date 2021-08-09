@@ -1,14 +1,25 @@
 <div class="container-fluid">
-<div class="row">
-  <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <p *ngIf="data.length<0 && !isFeching">no data</p>
-    <ul *ngIf="data" class="list-group">
-      <li class="list-group-item"
-          *ngFor="let item of data">{{item.title}}</li>
-    </ul>
-    <p *ngIf="isFeching">loading..</p>
+  <div class="row">
+    <div
+      *ngIf="error"
+      class="alert alert-danger"><p>{{error}}</p></div>
+
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <p *ngIf="data.length<1 && !isFeching">no data</p>
+      <ul *ngIf="data" class="list-group">
+        <li class="list-group-item"
+            *ngFor="let item of data">{{item.title}}
+          <button
+            type="button"
+            (click)=" delete()"
+            class="btn">
+            <fa-icon [icon]="icon"></fa-icon>
+          </button>
+        </li>
+      </ul>
+      <p *ngIf="isFeching">loading..</p>
+    </div>
   </div>
-</div>
 
 </div>
 <router-outlet></router-outlet>
