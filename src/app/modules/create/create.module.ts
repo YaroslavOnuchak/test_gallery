@@ -3,12 +3,14 @@ import {CommonModule} from '@angular/common';
 import {CreateComponent, } from './pages';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CreateRoutingModule} from "./create.routing.module";
+import {BrowserModule} from '@angular/platform-browser';
 @NgModule({
   imports: [
-    // CommonModule,
+    CommonModule,
     CreateRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    // BrowserModule,
 
   ],
   declarations: [

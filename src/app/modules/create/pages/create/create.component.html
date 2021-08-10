@@ -54,73 +54,79 @@
 
       </div>
     </div>
-    <!--    <div formArrayName="addressList" >-->
-    <h4>Address Information</h4>
-    <!--      <div *ngFor="let newAddress of addressListArray.controls, let idx = index">-->
-    <!--        <div [formGroupName]=idx>-->
-    <!--          <h5> address # : {{ idx + 1}}</h5>-->
-    <!--          <div class="mb-3 col-6 form-group firstControlElem">-->
-    <!--            <label>AddressType:-->
-    <!--              <select class="form-select"-->
-    <!--                      formControlName="addressType"-->
-    <!--                      aria-label="Default select example">-->
-    <!--                <option [selected] disabled>You have to choose</option>-->
-    <!--                <option *ngFor="let el of addressType, let idx = index"-->
-    <!--                        [value]=el.value> {{el.text}}</option>-->
-    <!--              </select>-->
-    <!--            </label>-->
-    <!--            <button type="button"-->
-    <!--                    class="btn btn-close"-->
-    <!--                    (click)="delAddresField(idx)"></button>-->
-    <!--          </div>-->
-    <!--          <div class="mb-3 col-6">-->
-    <!--            <label>Enter address:-->
-    <!--              <input type="text"-->
-    <!--                     placeholder="address"-->
-    <!--                     formControlName="address"-->
-    <!--                     class="form-control"></label>-->
-    <!--          </div>-->
-    <!--          <div class="mb-3 col-6">-->
-    <!--            <label>Enter city:-->
-    <!--              <input type="text"-->
-    <!--                     placeholder="city"-->
-    <!--                     formControlName="city"-->
-    <!--                     class="form-control"></label>-->
-    <!--          </div>-->
-    <!--          <div class="mb-3 col-6 box&#45;&#45;helpList">-->
-    <!--            <label>Enter country:-->
-    <!--              <ng-select-->
-    <!--                formControlName="country"-->
-    <!--                class="form-control"-->
-    <!--                [items]="countries"-->
-    <!--                bindLabel="name"-->
-    <!--                placeholder="Select country">-->
-    <!--              </ng-select>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--          <div class="mb-3 col-6">-->
-    <!--            <label>Enter postal Code:-->
-    <!--              <input type="text"-->
-    <!--                     placeholder="postal Code"-->
-    <!--                     formControlName="postalCode"-->
-    <!--                     class="form-control"></label>-->
-    <!--          </div>-->
-    <!--          <hr />-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div formArrayName="albumList">
+      <h4>Address Information</h4>
+      <div *ngFor="let newAddress of albumListArray.controls, let idx = index">
+        <div [formGroupName]=idx>
+          <h5> album # : {{ idx + 1}}</h5>
+          <div class="mb-3 col-6 form-group firstControlElem">
+            <label for="createPhone"
+                   class="form-label _req">Enter name
+              <input type="text"
+                     formControlName="name"
+                     class="form-control"
+              ></label>
+            <button type="button"
+                    class="btn btn-close"
+                    (click)="deleteAlbum(idx)"></button>
+          </div>
+          <div class="mb-3 col-6">
+            <label>add Access:
+              <input type="text"
+                     placeholder="Access"
+                     formControlName="usersAccess"
+                     class="form-control"></label>
+          </div>
+          <hr/>
+
+          <h4>photoList Information</h4>
+          <div formArrayName="photoList"
+               class="row">
+            <div class="col-3"
+                 *ngFor="let newPhoto of photoListArray.controls, let i = index">
+              <div [formGroupName]=i>
+                <h5> photo # : {{ i + 1}}</h5>
+                <div class="mb-3 form-group firstControlElem">
+                  <label for="createPhone"
+                         class="form-label _req">Enter url
+                    <input type="text"
+                           formControlName="url"
+                           class="form-control"
+                    ></label>
+                  <button type="button"
+                          class="btn btn-close"
+                          (click)="deletePhoto(i)"></button>
+                </div>
+                <div class="mb-3">
+                  <label>add Access:
+                    <input type="text"
+                           placeholder="Access"
+                           formControlName="usersAccess"
+                           class="form-control"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <button
       type="button"
       class="btn btn-secondary m-2"
-    (click)="sendData()">add another address
+      (click)="sendData()">send data
     </button>
   </form>
 
   <div class="'showForm">
 
-    <br/>
+
     <button type="button"
-            class="btn btn-secondary">Next
+            class="btn btn-secondary"
+            (click)="addNewAlbum()">add album
+    </button>
+    <button type="button"
+            class="btn btn-secondary"
+            (click)="addNewPhoto()">add photo
     </button>
   </div>
 </div>
