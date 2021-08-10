@@ -6,6 +6,10 @@ import {
 
 
 export const routes: Routes = [
+  // / {
+  //   path: '',
+  //   redirectTo: 'create'
+  // },
   {
     path: '',
     component: CreateComponent,

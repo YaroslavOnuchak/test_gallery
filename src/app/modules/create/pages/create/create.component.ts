@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {PostService} from "@shared/services";
@@ -26,8 +26,9 @@ export class CreateComponent implements OnInit, OnDestroy {
     password: "",
     albumList: [{
       id: "",
-      name: "",
+      title: "",
       usersAccess: "",
+      titleImg: "",
       photoList: []
     }]
   }
@@ -35,7 +36,8 @@ export class CreateComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
-              private postService: PostService) {
+              private postService: PostService,
+              private cdr: ChangeDetectorRef,) {
     this.errorSub = this.postService.error.subscribe(er => {
       this.error = er
     })
@@ -44,10 +46,6 @@ export class CreateComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.buildUserForm()
-
-    console.log(this.albumListArray.controls)
-    console.log(this.photoListArray)
-    // console.log(this.newForm.value.albumList[0].get('photoList'))
   }
 
   ngOnDestroy() {
@@ -56,19 +54,26 @@ export class CreateComponent implements OnInit, OnDestroy {
 
   sendData() {
     this.postService.createPost(this.newForm.value)
+    this.newForm.reset()
   }
 
 
   addNewAlbum(): void {
     const albumItem = this.fb.group({
       id: [this.user.albumList.length ? (this.user?.albumList[this.user.albumList.length - 1]?.id + 1) : 1],
-      name: "",
+      title: "",
       usersAccess: "",
-      photoList: [{
-        id: "",
-        url: "",
-        usersAccess: "",
-      }]
+      titleImg: "",
+      photoList: this.fb.array(
+        this.user.albumList[0]?.photoList?.map((el: any, i: number) => {
+          return this.fb.group({
+            id: "",
+            url: "",
+            usersAccess: "",
+            titleImg: false
+          })
+        })
+      )
     })
     this.albumListArray.push(albumItem);
     this.user = this.newForm.value
@@ -81,14 +86,21 @@ export class CreateComponent implements OnInit, OnDestroy {
       usersAccess: "",
     })
     this.photoListArray.push(photoItem);
-    this.user = this.newForm.value
+    this.user = this.newForm.value;
+    // console.log(this.albumListArray)
+    // console.log(this.photoListArray)
   }
 
   get albumListArray(): FormArray {
     return this.newForm.get('albumList') as FormArray;
   }
 
-  get photoListArray(): FormArray {
+  get photoListArray(): FormArray | any {
+
+    if (this.albumListArray.length < 1) {
+      this.addNewAlbum()
+    }
+    // console.log('=>>', this.albumListArray.controls[0])
     return this.albumListArray.controls[0].get('photoList') as FormArray;
   }
 
@@ -103,7 +115,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   buildUserForm(): FormGroup {
     return this.newForm = this.fb.group({
         id: ``,
-        title: ['', Validators.required],
+        firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         username: ['', Validators.required],
         email: ['', [
@@ -118,18 +130,19 @@ export class CreateComponent implements OnInit, OnDestroy {
           this.user.albumList.map((el: any, i: number) => {
             return this.fb.group({
               id: "",
-              name: "",
+              title: "",
               usersAccess: "",
+              titleImg: "",
               photoList: this.fb.array(
                 this.user.albumList[0]?.photoList?.map((el: any, i: number) => {
                   return this.fb.group({
                     id: "",
                     url: "",
                     usersAccess: "",
+                    titleImg: false
                   })
                 })
               )
-
             });
           })
         ),

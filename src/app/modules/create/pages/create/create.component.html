@@ -4,7 +4,7 @@
       <div class="mb-3 col-6">
         <label for="createFirstName" class="form-label _req">Enter First name</label>
         <input type="text"
-               formControlName="title"
+               formControlName="firstName"
                class="form-control"
                placeholder="first name"
                id="createFirstName">
@@ -61,24 +61,23 @@
           <h5> album # : {{ idx + 1}}</h5>
           <div class="mb-3 col-6 form-group firstControlElem">
             <label for="createPhone"
-                   class="form-label _req">Enter name
+                   class="form-label _req">Enter title
               <input type="text"
-                     formControlName="name"
+                     formControlName="title"
                      class="form-control"
               ></label>
             <button type="button"
                     class="btn btn-close"
                     (click)="deleteAlbum(idx)"></button>
           </div>
-          <div class="mb-3 col-6">
-            <label>add Access:
-              <input type="text"
-                     placeholder="Access"
-                     formControlName="usersAccess"
-                     class="form-control"></label>
-          </div>
+          <!--          <div class="mb-3 col-6">-->
+          <!--            <label>add Access:-->
+          <!--              <input type="text"-->
+          <!--                     placeholder="Access"-->
+          <!--                     formControlName="usersAccess"-->
+          <!--                     class="form-control"></label>-->
+          <!--          </div>-->
           <hr/>
-
           <h4>photoList Information</h4>
           <div formArrayName="photoList"
                class="row">
@@ -97,13 +96,13 @@
                           class="btn btn-close"
                           (click)="deletePhoto(i)"></button>
                 </div>
-                <div class="mb-3">
-                  <label>add Access:
-                    <input type="text"
-                           placeholder="Access"
-                           formControlName="usersAccess"
-                           class="form-control"></label>
-                </div>
+                <!--                <div class="mb-3">-->
+                <!--                  <label>add Access:-->
+                <!--                    <input type="text"-->
+                <!--                           placeholder="Access"-->
+                <!--                           formControlName="usersAccess"-->
+                <!--                           class="form-control"></label>-->
+                <!--                </div>-->
               </div>
             </div>
           </div>
@@ -116,9 +115,7 @@
       (click)="sendData()">send data
     </button>
   </form>
-
   <div class="'showForm">
-
 
     <button type="button"
             class="btn btn-secondary"

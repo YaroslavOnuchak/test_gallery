@@ -3,6 +3,7 @@ import {Routes} from '@angular/router';
 import {
   GeneralComponent
 } from './pages';
+import {GalleryModule} from "../gallery/gallery.module";
 
 
 export const routes: Routes = [
@@ -32,5 +33,11 @@ export const routes: Routes = [
     loadChildren: () =>
       import('../create/create.module')
         .then(m => m.CreateModule),
+  },
+  {
+    path: 'gallery',
+    loadChildren: () =>
+      import('../gallery/gallery.module')
+        .then(m => m.GalleryModule),
   },
 ];
