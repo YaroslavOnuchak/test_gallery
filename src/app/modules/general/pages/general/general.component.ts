@@ -29,7 +29,7 @@ export class GeneralComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData()
-    console.log(Date.now())
+    // console.log(Date.now())
   }
 
   private fetchData() {
@@ -38,7 +38,7 @@ export class GeneralComponent implements OnInit {
       .subscribe((responseData: any) => {
           this.data = responseData;
           this.isFeching = false
-          console.log(responseData)
+          // console.log(responseData)
           this.cdr.detectChanges();
 
         },

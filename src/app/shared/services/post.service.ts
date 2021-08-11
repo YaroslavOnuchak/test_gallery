@@ -44,10 +44,10 @@ export class PostService {
         headers: new HttpHeaders({
           'Custom-Header': "Kyky",
           'Custom-Headera': "Kyky"
-        })
-      ,
+        }),
         // params:new HttpParams().set('print', 'pretty')
-        params:searchParaam
+        params:searchParaam,
+        responseType:'json'
       })
       .pipe(
         map(responseData => {
@@ -70,7 +70,8 @@ export class PostService {
     return this.http.delete(
       'https://gallery-img-default-rtdb.europe-west1.firebasedatabase.app/album.json',
       {
-        observe:"events"
+        observe:"events",
+        responseType:'text'
       })
       .pipe(
         tap( event=>{

@@ -9,7 +9,8 @@
       <ul *ngIf="data" class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center"
             *ngFor="let user of data; let i = index"
-          (click)="navigate(i)"
+            (click)="navigate(i)"
+           style="cursor: pointer"
         ><span>{{user.username}}</span>
           <img [src]="(user.titleImg)?user.titleImg :defaultAlbumTitleImg "
                class="card-img-top"

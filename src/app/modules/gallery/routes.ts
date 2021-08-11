@@ -27,12 +27,12 @@ export const routes: Routes = [
     //
     // ]
   },
-  // {
-  //   path: 'create',
-  //   loadChildren: () =>
-  //     import('../create/create.module')
-  //       .then(m => m.CreateModule),
-  // },
+  {
+    path: 'album/:id',
+    loadChildren: () =>
+      import('../create/create.module')
+        .then(m => m.CreateModule),
+  },
   // {
   //   path: 'test',
   //   loadChildren: () =>
