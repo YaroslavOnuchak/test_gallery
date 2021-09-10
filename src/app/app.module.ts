@@ -8,8 +8,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {AuthInterceptorService, PostService} from "@shared/services";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {CommonModule} from '@angular/common';
 
 @NgModule({
